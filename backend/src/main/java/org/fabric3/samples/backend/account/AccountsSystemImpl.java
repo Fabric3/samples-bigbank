@@ -2,17 +2,23 @@ package org.fabric3.samples.backend.account;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import javax.xml.ws.Endpoint;
-
 import java.math.BigDecimal;
 
-import org.fabric3.samples.api.backend.account.AccountsSystem;
-import org.fabric3.samples.api.backend.account.InternalAccountData;
+import org.fabric3.api.annotation.model.Component;
+import org.fabric3.api.annotation.scope.Composite;
+import org.fabric3.api.binding.ws.annotation.WebServiceBinding;
+import org.fabric3.samples.bigbank.api.backend.account.AccountsSystem;
+import org.fabric3.samples.bigbank.api.backend.account.InternalAccountData;
+import org.oasisopen.sca.annotation.EagerInit;
 
 /**
- *
+ * A web service simulating a backend legacy system.
  */
+@Component
+@Composite
+@EagerInit
 @WebService
+@WebServiceBinding(uri = "accountsSystem")
 public class AccountsSystemImpl implements AccountsSystem {
 
     @WebMethod
@@ -20,7 +26,4 @@ public class AccountsSystemImpl implements AccountsSystem {
         return new InternalAccountData("1234", BigDecimal.valueOf(100.05));
     }
 
-    public static void main(String... args) {
-        Endpoint.publish("http://localhost:8081/accountSystem", new AccountsSystemImpl());
-    }
 }

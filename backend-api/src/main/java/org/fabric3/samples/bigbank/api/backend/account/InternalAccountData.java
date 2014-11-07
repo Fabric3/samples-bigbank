@@ -1,10 +1,10 @@
-package org.fabric3.samples.api.backend.account;
+package org.fabric3.samples.bigbank.api.backend.account;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
 /**
- *
+ * JAXB data structure for legacy system account data.
  */
 @XmlRootElement
 public class InternalAccountData {

@@ -1,8 +1,8 @@
 <config>
-    <runtime jmx.port="1199"/>
+    <runtime jmx.port="1197"/>
     <domain autowire="on"/>
     <security allow.http.authentication="true"/>
     <web.server>
-        <http port="8182"/>
+        <http port="8181"/>
     </web.server>
 </config>
