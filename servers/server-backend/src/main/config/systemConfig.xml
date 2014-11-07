@@ -1,0 +1,7 @@
+<config>
+    <domain autowire="on"/>
+    <security allow.http.authentication="true"/>
+    <web.server>
+        <http port="8182"/>
+    </web.server>
+</config>

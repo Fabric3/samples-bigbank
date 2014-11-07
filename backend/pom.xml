@@ -28,4 +28,12 @@
     <name>Fabric3 BigBank Backend Services</name>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.fabric3.samples</groupId>
+            <artifactId>backend-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>
