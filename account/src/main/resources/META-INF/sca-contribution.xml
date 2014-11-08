@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <contribution xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+    <import.java package="org.fabric3.samples.bigbank.api.services.*" version="2.5.0"/>
     <import.java package="org.fabric3.samples.bigbank.api.backend.*" version="2.5.0"/>
 </contribution>

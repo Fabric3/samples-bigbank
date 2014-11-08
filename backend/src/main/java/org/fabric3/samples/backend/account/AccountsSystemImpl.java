@@ -30,7 +30,8 @@ public class AccountsSystemImpl implements AccountsSystem {
     public InternalAccountData getAccountData(String id) {
         monitor.info("Accounting system invoked");
 
-        return new InternalAccountData("1234", BigDecimal.valueOf(100.05));
+        BigDecimal balance = BigDecimal.valueOf(2000.20).setScale(2, BigDecimal.ROUND_DOWN);
+        return new InternalAccountData(id, balance);
     }
 
 }

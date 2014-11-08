@@ -30,6 +30,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.fabric3.samples</groupId>
+            <artifactId>services-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
             <version>${jax.rs.version}</version>

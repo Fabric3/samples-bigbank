@@ -1,4 +1,4 @@
-package org.fabric3.samples.bigbank.client;
+package org.fabric3.samples.bigbank.api.loan;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -7,8 +7,6 @@ import java.net.URL;
 import java.util.UUID;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.fabric3.samples.bigbank.api.loan.LoanApplication;
-import org.fabric3.samples.bigbank.api.loan.LoanApplicationStatus;
 
 /**
  * Invokes the loan service using HTTP.

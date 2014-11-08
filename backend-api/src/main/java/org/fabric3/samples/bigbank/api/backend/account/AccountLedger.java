@@ -7,20 +7,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class AccountLedger {
-    private LedgerEntry[] ledgerEntries;
+    private LedgerEntry[] entries;
 
     public AccountLedger() {
     }
 
-    public AccountLedger(LedgerEntry[] ledgerEntries) {
-        this.ledgerEntries = ledgerEntries;
+    public AccountLedger(LedgerEntry[] entries) {
+        this.entries = entries;
     }
 
-    public LedgerEntry[] getLedgerEntries() {
-        return ledgerEntries;
+    public LedgerEntry[] getEntries() {
+        return entries;
     }
 
-    public void setLedgerEntries(LedgerEntry[] ledgerEntries) {
-        this.ledgerEntries = ledgerEntries;
+    public void setEntries(LedgerEntry[] entries) {
+        this.entries = entries;
     }
 }

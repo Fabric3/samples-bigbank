@@ -69,6 +69,11 @@
                     <contributions>
                         <dependency>
                             <groupId>org.fabric3.samples</groupId>
+                            <artifactId>services-api</artifactId>
+                            <version>${project.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.fabric3.samples</groupId>
                             <artifactId>backend-api</artifactId>
                             <version>${project.version}</version>
                         </dependency>

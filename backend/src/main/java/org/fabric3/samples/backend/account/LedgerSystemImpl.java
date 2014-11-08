@@ -18,6 +18,7 @@ import org.fabric3.samples.bigbank.api.backend.account.AccountLedger;
 import org.fabric3.samples.bigbank.api.backend.account.LedgerEntry;
 import org.fabric3.samples.bigbank.api.backend.account.LedgerSystem;
 import org.oasisopen.sca.annotation.EagerInit;
+import org.oasisopen.sca.annotation.Init;
 
 /**
  * A web service simulating a backend legacy system.
@@ -28,6 +29,12 @@ import org.oasisopen.sca.annotation.EagerInit;
 @WebService
 @WebServiceBinding(uri = "ledgerSystem")
 public class LedgerSystemImpl implements LedgerSystem {
+    private DatatypeFactory factory;
+
+    @Init
+    public void init() throws DatatypeConfigurationException {
+        factory = DatatypeFactory.newInstance();
+    }
 
     @Monitor
     protected MonitorChannel monitor;
@@ -36,32 +43,27 @@ public class LedgerSystemImpl implements LedgerSystem {
     public AccountLedger getLedger(String id) {
         monitor.info("Ledger system invoked");
 
-        LedgerEntry entry1 = createLedgerEntry(100.50, 1);
-        LedgerEntry entry2 = createLedgerEntry(4.20, 2);
-        LedgerEntry entry3 = createLedgerEntry(100, 4);
+        LedgerEntry entry1 = createLedgerEntry(50.50, "Lux Cinema", 1, LedgerEntry.STATUS_POSTED);
+        LedgerEntry entry2 = createLedgerEntry(44.20, "Cafe de Paris", 2, LedgerEntry.STATUS_POSTED);
+        LedgerEntry entry3 = createLedgerEntry(100.35, "Foo Sporting Goods", 4, LedgerEntry.STATUS_POSTED);
+        LedgerEntry entry4 = createLedgerEntry(80.00, "Gas", 0, LedgerEntry.STATUS_PROCESSING);
 
-        return new AccountLedger(new LedgerEntry[]{entry1, entry2, entry3});
+        return new AccountLedger(new LedgerEntry[]{entry1, entry2, entry3, entry4});
     }
 
-    private LedgerEntry createLedgerEntry(double amount, int days) {
-        LedgerEntry ledgerEntry = new LedgerEntry();
-        ledgerEntry.setAmount(BigDecimal.valueOf(amount));
-
+    private LedgerEntry createLedgerEntry(double amount, String description, int days, int status) {
+        LedgerEntry entry = new LedgerEntry();
+        entry.setStatus(status);
+        entry.setAmount(BigDecimal.valueOf(amount).setScale(2, BigDecimal.ROUND_DOWN));
+        entry.setDescription(description);
         XMLGregorianCalendar date = createDate(days);
-        ledgerEntry.setDate(date);
-        return ledgerEntry;
+        entry.setDate(date);
+        return entry;
     }
 
     private XMLGregorianCalendar createDate(int days) {
         GregorianCalendar date = new GregorianCalendar();
         date.setTimeInMillis(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(days));
-
-        DatatypeFactory factory = null;
-        try {
-            factory = DatatypeFactory.newInstance();
-        } catch (DatatypeConfigurationException e) {
-            throw new AssertionError(e);
-        }
         return factory.newXMLGregorianCalendar(date);
     }
 }

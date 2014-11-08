@@ -1,9 +1,9 @@
-package org.fabric3.samples.bigbank.account;
+package org.fabric3.samples.bigbank.api.services.account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- *
+ * Account data.
  */
 public class Account {
     @JsonProperty
@@ -14,6 +14,9 @@ public class Account {
 
     @JsonProperty
     private int safeToSpend;
+
+    public Account() {
+    }
 
     public Account(String number, int balance, int safeToSpend) {
         this.number = number;

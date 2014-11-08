@@ -42,6 +42,7 @@
     </properties>
 
     <modules>
+        <module>services-api</module>
         <module>account</module>
         <module>payments</module>
         <module>financing</module>

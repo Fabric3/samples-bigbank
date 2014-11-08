@@ -1,4 +1,4 @@
-package org.fabric3.samples.bigbank.client;
+package org.fabric3.samples.bigbank.api.loan;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -8,10 +8,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.UUID;
-
-import org.fabric3.samples.bigbank.api.loan.LoanApplication;
-import org.fabric3.samples.bigbank.api.loan.LoanApplicationStatus;
-import org.fabric3.samples.bigbank.api.loan.ObjectFactory;
 
 /**
  * Demonstrates connecting to the loan service using an asynchronous file exchange. A loan application is placed in an inbox directory on disk and the client

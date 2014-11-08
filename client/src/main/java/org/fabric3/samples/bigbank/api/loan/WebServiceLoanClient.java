@@ -1,4 +1,4 @@
-package org.fabric3.samples.bigbank.client;
+package org.fabric3.samples.bigbank.api.loan;
 
 import javax.xml.namespace.QName;
 import java.net.URL;
