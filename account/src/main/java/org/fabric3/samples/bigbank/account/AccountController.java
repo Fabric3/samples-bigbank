@@ -19,7 +19,9 @@ import org.fabric3.samples.bigbank.api.backend.account.LedgerSystem;
 import org.oasisopen.sca.annotation.Reference;
 
 /**
+ * Controller for account resources.
  *
+ * This controller is wired to legacy systems that expose WS-* (Web Services) APIs via {@code Reference} annotations.
  */
 @EndpointUri("accounts")
 @Path("/")
@@ -32,7 +34,6 @@ public class AccountController {
     @Monitor
     protected AccountMonitor monitor;
 
-    // injects a wire to the backend legacy accounts system which exposes a WS-* (Web Services) API
     @Reference
     @WebServiceBinding(uri = "http://localhost:8182/accountsSystem")
     protected AccountsSystem accountsSystem;
@@ -46,7 +47,10 @@ public class AccountController {
     public Account getAccount(@PathParam("accountNumber") String number) {
         monitor.invoked(number);
 
+        // retrieve account information from the account system
         InternalAccountData internalData = accountsSystem.getAccountData(number);
+
+        // retrieve recent ledger entries for the account
         AccountLedger accountLedger = ledgerSystem.getLedger(number);
 
         return new Account(number, 100000, 10000);

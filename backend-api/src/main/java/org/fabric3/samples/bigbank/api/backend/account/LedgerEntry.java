@@ -4,7 +4,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 
 /**
- *
+ * An entry in an account ledger.
  */
 public class LedgerEntry {
     private int type;
