@@ -14,7 +14,9 @@ import org.fabric3.samples.bigbank.api.backend.account.InternalAccountData;
 import org.oasisopen.sca.annotation.EagerInit;
 
 /**
- * A web service simulating a backend legacy system.
+ * A web service simulating a backend legacy account system.
+ *
+ * This service also demonstrates how to expose a Web Service (JAX-WS) endpoint with Fabric3.
  */
 @Component
 @Composite

@@ -7,7 +7,7 @@ import org.fabric3.api.annotation.monitor.Info;
  */
 public interface LoanMonitor {
 
-    @Info("Financing service invoked: {0}")
+    @Info("Loan application received: {0}")
     void invoked(String id);
 
     @Info("Notification sent: {0}")

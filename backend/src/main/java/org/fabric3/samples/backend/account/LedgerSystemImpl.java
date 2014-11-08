@@ -21,7 +21,9 @@ import org.oasisopen.sca.annotation.EagerInit;
 import org.oasisopen.sca.annotation.Init;
 
 /**
- * A web service simulating a backend legacy system.
+ * A web service simulating a backend legacy ledger system.
+ *
+ * This service also demonstrates how to expose a Web Service (JAX-WS) endpoint with Fabric3.
  */
 @Component
 @Composite

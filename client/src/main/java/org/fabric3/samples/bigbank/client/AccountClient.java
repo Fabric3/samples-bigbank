@@ -17,8 +17,8 @@ public class AccountClient {
     private static final BigDecimal DIVISOR = BigDecimal.valueOf(100);
 
     public static void main(String... args) {
-        Client client = ClientBuilder.newClient();
-        client.register(JacksonFeature.class);
+        Client client = createClient();
+
         Invocation.Builder request = client.target(ACCOUNTS_URL + "/123").request();
         Account account = request.buildGet().invoke(Account.class);
 
@@ -29,4 +29,11 @@ public class AccountClient {
     private static String convert(int amount) {
         return BigDecimal.valueOf(amount).setScale(2, ROUND_DOWN).divide(DIVISOR, ROUND_DOWN).toString();
     }
+
+    private static Client createClient() {
+        Client client = ClientBuilder.newClient();
+        client.register(JacksonFeature.class);
+        return client;
+    }
+
 }
