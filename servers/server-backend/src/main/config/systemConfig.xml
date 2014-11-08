@@ -1,5 +1,5 @@
 <config>
-    <runtime jmx.port="1199"/>
+    <runtime jmx.port="1199" port.range="61616-62616"/>
     <domain autowire="on"/>
     <security allow.http.authentication="true"/>
     <web.server>

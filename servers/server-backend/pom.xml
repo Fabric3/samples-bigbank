@@ -49,6 +49,11 @@
                             <artifactId>profile-ws</artifactId>
                             <version>${fabric3.version}</version>
                         </profile>
+                        <profile>
+                            <groupId>org.fabric3</groupId>
+                            <artifactId>profile-jms</artifactId>
+                            <version>${fabric3.version}</version>
+                        </profile>
                     </profiles>
                     <contributions>
                         <dependency>

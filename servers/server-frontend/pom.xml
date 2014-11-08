@@ -55,6 +55,11 @@
                             <artifactId>profile-rs</artifactId>
                             <version>${fabric3.version}</version>
                         </profile>
+                        <profile>
+                            <groupId>org.fabric3</groupId>
+                            <artifactId>profile-jms</artifactId>
+                            <version>${fabric3.version}</version>
+                        </profile>
                     </profiles>
                     <contributions>
                         <dependency>
@@ -65,6 +70,11 @@
                         <dependency>
                             <groupId>org.fabric3.samples</groupId>
                             <artifactId>account</artifactId>
+                            <version>${project.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.fabric3.samples</groupId>
+                            <artifactId>financing</artifactId>
                             <version>${project.version}</version>
                         </dependency>
                     </contributions>

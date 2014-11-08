@@ -28,4 +28,16 @@
     <name>Fabric3 BigBank Financing Service</name>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.fabric3.samples</groupId>
+            <artifactId>backend-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fabric3</groupId>
+            <artifactId>fabric3-binding-jms-api</artifactId>
+            <version>${fabric3.version}</version>
+        </dependency>
+    </dependencies>
 </project>
