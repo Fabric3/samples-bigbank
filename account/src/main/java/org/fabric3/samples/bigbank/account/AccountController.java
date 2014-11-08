@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.fabric3.api.annotation.model.Component;
 import org.fabric3.api.annotation.model.EndpointUri;
+import org.fabric3.api.annotation.monitor.Monitor;
 import org.fabric3.api.annotation.scope.Composite;
 import org.fabric3.api.binding.ws.annotation.WebServiceBinding;
 import org.fabric3.samples.bigbank.api.backend.account.AccountLedger;
@@ -28,6 +29,9 @@ import org.oasisopen.sca.annotation.Reference;
 @Component
 public class AccountController {
 
+    @Monitor
+    protected AccountMonitor monitor;
+
     // injects a wire to the backend legacy accounts system which exposes a WS-* (Web Services) API
     @Reference
     @WebServiceBinding(uri = "http://localhost:8182/accountsSystem")
@@ -40,6 +44,8 @@ public class AccountController {
     @Path("{accountNumber}")
     @GET
     public Account getAccount(@PathParam("accountNumber") String number) {
+        monitor.invoked(number);
+
         InternalAccountData internalData = accountsSystem.getAccountData(number);
         AccountLedger accountLedger = ledgerSystem.getLedger(number);
 

@@ -9,7 +9,9 @@ import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 
+import org.fabric3.api.MonitorChannel;
 import org.fabric3.api.annotation.model.Component;
+import org.fabric3.api.annotation.monitor.Monitor;
 import org.fabric3.api.annotation.scope.Composite;
 import org.fabric3.api.binding.ws.annotation.WebServiceBinding;
 import org.fabric3.samples.bigbank.api.backend.account.AccountLedger;
@@ -27,8 +29,13 @@ import org.oasisopen.sca.annotation.EagerInit;
 @WebServiceBinding(uri = "ledgerSystem")
 public class LedgerSystemImpl implements LedgerSystem {
 
+    @Monitor
+    protected MonitorChannel monitor;
+
     @WebMethod
     public AccountLedger getLedger(String id) {
+        monitor.info("Ledger system invoked");
+
         LedgerEntry entry1 = createLedgerEntry(100.50, 1);
         LedgerEntry entry2 = createLedgerEntry(4.20, 2);
         LedgerEntry entry3 = createLedgerEntry(100, 4);
