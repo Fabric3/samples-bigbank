@@ -11,13 +11,13 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 /**
  *
  */
-public class FinancingClient {
-    private static final String FINANCING = "http://localhost:8181/financing";
+public class PaymentClient {
+    private static final String PAYMENTS_URL = "http://localhost:8181/payments";
 
     public static void main(String... args) {
         Client client = ClientBuilder.newClient();
         client.register(JacksonFeature.class);
-        Invocation.Builder request = client.target(FINANCING + "/apply").request();
+        Invocation.Builder request = client.target(PAYMENTS_URL + "/apply").request();
         String reply = request.buildPut(Entity.entity("123", MediaType.APPLICATION_JSON)).invoke(String.class);
 
         System.out.println("Reply: " + reply);

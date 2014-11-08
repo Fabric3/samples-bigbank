@@ -28,4 +28,29 @@
     <name>Fabric3 BigBank Payments Service</name>
     <packaging>jar</packaging>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>org.fabric3</groupId>
+            <artifactId>fabric3-model-api</artifactId>
+            <version>${fabric3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fabric3</groupId>
+            <artifactId>fabric3-binding-ws-api</artifactId>
+            <version>${fabric3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fabric3</groupId>
+            <artifactId>fabric3-binding-zeromq-api</artifactId>
+            <version>${fabric3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fabric3.samples</groupId>
+            <artifactId>backend-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

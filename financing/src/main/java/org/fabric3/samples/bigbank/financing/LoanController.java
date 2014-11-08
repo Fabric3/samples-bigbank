@@ -13,27 +13,27 @@ import org.fabric3.api.annotation.scope.Composite;
 import org.oasisopen.sca.annotation.Reference;
 
 /**
- * Controller for financing resources.
+ * Controller for loan resources.
  */
-@EndpointUri("financing")
+@EndpointUri("loan")
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Composite
 @Component
-public class FinancingController {
+public class LoanController {
 
     @Monitor
-    protected FinancingMonitor monitor;
+    protected LoanMonitor monitor;
 
     @Reference
-    protected Gateway financeSystem;
+    protected Gateway gateway;
 
     @Path("apply")
     @PUT
     public String apply(String app) {
         monitor.invoked(app);
-        financeSystem.apply(app);
+        gateway.apply(app);
         return "ok";
     }
 

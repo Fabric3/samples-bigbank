@@ -1,4 +1,4 @@
-package org.fabric3.samples.bigbank.api.backend.account;
+package org.fabric3.samples.bigbank.api.backend.loan;
 
 import org.oasisopen.sca.annotation.Callback;
 import org.oasisopen.sca.annotation.OneWay;
@@ -6,8 +6,8 @@ import org.oasisopen.sca.annotation.OneWay;
 /**
  *
  */
-@Callback(FinanceSystemCallback.class)
-public interface FinanceSystem {
+@Callback(LoanSystemCallback.class)
+public interface LoanSystem {
 
     @OneWay
     void apply(String app);
