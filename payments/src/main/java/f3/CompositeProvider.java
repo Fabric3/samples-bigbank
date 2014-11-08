@@ -12,14 +12,14 @@ import org.fabric3.api.model.type.component.ChannelDefinition;
 import org.fabric3.api.model.type.component.Composite;
 
 /**
- * Demonstrates use of the Fabric3 DSL for creating a composite.
+ * Demonstrates the Fabric3 DSL for creating a composite.
  */
 public class CompositeProvider {
     private static final QName COMPOSITE = new QName("urn:bigbank.org", "PaymentComposite");
 
     @Provides
     public static Composite createComposite() {
-        // creates a channel bound to a ZeroMQ socket
+        // Creates a channel bound to a ZeroMQ socket. Publishers and subscribers to the channel will communicate via a ZeroMQ PUB/SUB socket.
         ZeroMQBindingDefinition binding = ZeroMQBindingDefinitionBuilder.newBuilder().address(Collections.singletonList("localhost:8383")).build();
         ChannelDefinition channel = ChannelDefinitionBuilder.newBuilder("FraudChannel").binding(binding).build();
         return CompositeBuilder.newBuilder(COMPOSITE).channel(channel).deployable().build();

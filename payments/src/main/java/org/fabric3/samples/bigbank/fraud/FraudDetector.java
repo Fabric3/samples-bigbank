@@ -5,7 +5,8 @@ import org.fabric3.api.annotation.model.Component;
 import org.fabric3.api.annotation.scope.Composite;
 
 /**
- *
+ * A sample fraud detector that receives message from a channel bound to a ZeroMQ socket. The channel is defined using the Fabric3 DSL by {@link f3
+ * .CompositeProvider}.
  */
 @Composite
 @Component

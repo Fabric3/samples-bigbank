@@ -5,6 +5,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import java.math.BigDecimal;
 
 import org.fabric3.api.annotation.Producer;
 import org.fabric3.api.annotation.model.Component;
@@ -12,9 +15,11 @@ import org.fabric3.api.annotation.model.EndpointUri;
 import org.fabric3.api.annotation.monitor.Monitor;
 import org.fabric3.api.annotation.scope.Composite;
 import org.fabric3.api.binding.ws.annotation.WebServiceBinding;
-import org.fabric3.samples.bigbank.api.backend.account.AccountsSystem;
-import org.fabric3.samples.bigbank.api.backend.account.LedgerSystem;
+import org.fabric3.samples.bigbank.api.backend.reconciliation.ReconciliationSystem;
+import org.fabric3.samples.bigbank.api.backend.reconciliation.Transfer;
+import org.fabric3.samples.bigbank.api.services.payments.Payment;
 import org.oasisopen.sca.annotation.Reference;
+import static java.math.BigDecimal.ROUND_DOWN;
 
 /**
  * Controller for payment resources.
@@ -28,6 +33,7 @@ import org.oasisopen.sca.annotation.Reference;
 @Composite
 @Component
 public class PaymentController {
+    private static final BigDecimal DIVISOR = BigDecimal.valueOf(100);
 
     @Monitor
     protected PaymentMonitor monitor;
@@ -36,19 +42,23 @@ public class PaymentController {
     protected FraudChannel fraudChannel;
 
     @Reference
-    @WebServiceBinding(uri = "http://localhost:8182/accountsSystem")
-    protected AccountsSystem accountsSystem;
+    @WebServiceBinding(uri = "http://localhost:8182/reconciliationSystem")
+    protected ReconciliationSystem reconciliationSystem;
 
-    @Reference
-    @WebServiceBinding(uri = "http://localhost:8182/ledgerSystem")
-    protected LedgerSystem ledgerSystem;
-
-    @Path("apply")
     @PUT
-    public String transfer(String number) {
-        monitor.invoked(number);
+    public Response transfer(Payment payment) {
+        monitor.invoked(payment.getCustomerAccount());
         fraudChannel.publish("test");
-        return "OK";
+
+        Transfer transfer = createTransfer(payment);
+
+        reconciliationSystem.postTransfer(transfer);
+        return Response.status(Response.Status.CREATED).build();
+    }
+
+    private Transfer createTransfer(Payment payment) {
+        BigDecimal amount = BigDecimal.valueOf(payment.getAmount()).setScale(2, ROUND_DOWN).divide(DIVISOR, ROUND_DOWN);
+        return new Transfer(payment.getCustomerAccount(), payment.getPayeeAccount(), amount, payment.getDescription());
     }
 
 }

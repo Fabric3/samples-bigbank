@@ -29,6 +29,7 @@ import static java.math.BigDecimal.ROUND_DOWN;
 @Composite
 @Component
 public class LoanController {
+    private static final BigDecimal DIVISOR = BigDecimal.valueOf(100);
 
     @Monitor
     protected LoanMonitor monitor;
@@ -52,7 +53,7 @@ public class LoanController {
         request.setCustomerId(app.getCustomerId());
         request.setMerchantId(app.getMerchantId());
         request.setTerm(app.getTerm());
-        request.setAmount(new BigDecimal(app.getAmount()).setScale(2, ROUND_DOWN));
+        request.setAmount(new BigDecimal(app.getAmount()).setScale(2, ROUND_DOWN).divide(DIVISOR, ROUND_DOWN));
         return request;
     }
 

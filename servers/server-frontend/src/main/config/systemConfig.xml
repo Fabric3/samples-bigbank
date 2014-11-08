@@ -5,4 +5,7 @@
     <web.server>
         <http port="8181"/>
     </web.server>
+    <jms>
+        <activemq broker.name="frontend"/>
+    </jms>
 </config>
