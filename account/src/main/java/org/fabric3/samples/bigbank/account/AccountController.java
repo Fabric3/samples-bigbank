@@ -11,8 +11,10 @@ import org.fabric3.api.annotation.model.Component;
 import org.fabric3.api.annotation.model.EndpointUri;
 import org.fabric3.api.annotation.scope.Composite;
 import org.fabric3.api.binding.ws.annotation.WebServiceBinding;
+import org.fabric3.samples.bigbank.api.backend.account.AccountLedger;
 import org.fabric3.samples.bigbank.api.backend.account.AccountsSystem;
 import org.fabric3.samples.bigbank.api.backend.account.InternalAccountData;
+import org.fabric3.samples.bigbank.api.backend.account.LedgerSystem;
 import org.oasisopen.sca.annotation.Reference;
 
 /**
@@ -31,10 +33,15 @@ public class AccountController {
     @WebServiceBinding(uri = "http://localhost:8182/accountsSystem")
     protected AccountsSystem accountsSystem;
 
+    @Reference
+    @WebServiceBinding(uri = "http://localhost:8182/ledgerSystem")
+    protected LedgerSystem ledgerSystem;
+
     @Path("{accountNumber}")
     @GET
     public Account getAccount(@PathParam("accountNumber") String number) {
         InternalAccountData internalData = accountsSystem.getAccountData(number);
+        AccountLedger accountLedger = ledgerSystem.getLedger(number);
 
         return new Account(number, 100000, 10000);
     }
