@@ -11,7 +11,7 @@ import org.fabric3.samples.bigbank.api.services.financing.LoanApplication;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
 /**
- *
+ * Submits a loan application.
  */
 public class LoanClient {
     private static final String LOAN_URL = "http://localhost:8181/loan";

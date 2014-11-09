@@ -57,7 +57,4 @@ public class LoanController {
         return request;
     }
 
-    public void reply(String app) {
-
-    }
 }

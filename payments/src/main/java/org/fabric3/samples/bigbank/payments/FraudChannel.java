@@ -8,7 +8,7 @@ public interface FraudChannel {
     /**
      * Publish payment data.
      *
-     * @param payment payment data
+     * @param data encoded payment data
      */
-    void publish(String payment);
+    void publish(byte[] data);
 }

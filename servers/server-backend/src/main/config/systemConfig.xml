@@ -1,11 +1,15 @@
 <config>
-    <runtime jmx.port="1199" port.range="61616-62616"/>
+    <runtime jmx.port="1199"/>
     <domain autowire="on"/>
     <security allow.http.authentication="true"/>
     <web.server>
         <http port="8182"/>
     </web.server>
     <jms>
-        <activemq broker.name="backend"/>
+        <activemq>
+            <transportConnectors>
+                <transportConnector name="nio" uri="tcp://localhost:61616"/>
+            </transportConnectors>
+        </activemq>
     </jms>
 </config>

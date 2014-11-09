@@ -11,7 +11,7 @@ import org.fabric3.samples.bigbank.api.services.payments.Payment;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
 /**
- *
+ * Submits a funds transfer between two accounts.
  */
 public class PaymentClient {
     private static final String PAYMENTS_URL = "http://localhost:8181/payments";

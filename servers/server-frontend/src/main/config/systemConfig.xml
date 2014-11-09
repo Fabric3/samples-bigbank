@@ -6,6 +6,9 @@
         <http port="8181"/>
     </web.server>
     <jms>
-        <activemq broker.name="frontend"/>
+        <activemq broker.disabled="true"/>
+        <connection.factories>
+            <connection.factory name='BackendFactory' broker.url='tcp://localhost:61616' type='xa'/>
+        </connection.factories>
     </jms>
 </config>

@@ -3,7 +3,7 @@ package org.fabric3.samples.bigbank.financing;
 import org.fabric3.api.annotation.monitor.Info;
 
 /**
- *
+ * Monitor/logging interface for the loan controller.
  */
 public interface LoanMonitor {
 

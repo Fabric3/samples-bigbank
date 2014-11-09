@@ -2,7 +2,9 @@ package org.fabric3.samples.backend.loan;
 
 import java.math.BigDecimal;
 
+import org.fabric3.api.MonitorChannel;
 import org.fabric3.api.annotation.model.Component;
+import org.fabric3.api.annotation.monitor.Monitor;
 import org.fabric3.api.annotation.scope.Composite;
 import org.fabric3.api.binding.jms.annotation.JMS;
 import org.fabric3.api.binding.jms.annotation.JMSConfiguration;
@@ -25,10 +27,20 @@ import static java.math.BigDecimal.ROUND_DOWN;
 @JMS(value = @JMSConfiguration(destination = "ApplicationQueue"), callback = @JMSConfiguration(destination = "ApplicationCallbackQueue"))
 public class LoanSystemImpl implements LoanSystem {
 
-    @Callback
-    protected LoanSystemCallback callback;
+    @Monitor
+    protected MonitorChannel monitor;
 
+    @Callback
+    protected LoanSystemCallback callback;  // injected by the runtime
+
+    /**
+     * Method that receives loan request messages from the ApplicationQueue destination.
+     *
+     * @param request the message
+     */
     public void apply(LoanRequest request) {
+        monitor.info("Loan system invoked");
+
         LoanResponse response = new LoanResponse();
         response.setCustomerId(request.getCustomerId());
         response.setAmount(request.getAmount());
@@ -36,6 +48,7 @@ public class LoanSystemImpl implements LoanSystem {
         response.setRate(BigDecimal.valueOf(3.40).setScale(2, ROUND_DOWN));
         response.setTerm(30);
 
+        // send the response back via the ApplicationCallbackQueue destination
         callback.reply(response);
     }
 }

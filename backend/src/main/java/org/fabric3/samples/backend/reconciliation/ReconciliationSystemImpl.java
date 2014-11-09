@@ -28,6 +28,6 @@ public class ReconciliationSystemImpl implements ReconciliationSystem {
 
     @WebMethod
     public void postTransfer(Transfer transfer) {
-        monitor.info("Transfer received: " + transfer.getCustomerAccount());
+        monitor.info("Reconciliation system invoked: " + transfer.getCustomerAccount());
     }
 }

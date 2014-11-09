@@ -24,7 +24,8 @@ import static java.math.BigDecimal.ROUND_DOWN;
 /**
  * Controller for payment resources.
  *
- * This controller is wired to legacy systems that expose WS-* (Web Services) APIs via {@code Reference} annotations.
+ * This controller is wired to legacy systems that expose WS-* (Web Services) APIs via {@code Reference} annotations. It is also connected to the fraud
+ * detection channel where it publishes messages using high-performance messaging to consumers that perform fraud analysis.
  */
 @EndpointUri("payments")
 @Path("/")
@@ -48,7 +49,8 @@ public class PaymentController {
     @PUT
     public Response transfer(Payment payment) {
         monitor.invoked(payment.getCustomerAccount());
-        fraudChannel.publish("test");
+
+        fraudChannel.publish(encodeFraudData(payment)); // send the fraud data
 
         Transfer transfer = createTransfer(payment);
 
@@ -59,6 +61,17 @@ public class PaymentController {
     private Transfer createTransfer(Payment payment) {
         BigDecimal amount = BigDecimal.valueOf(payment.getAmount()).setScale(2, ROUND_DOWN).divide(DIVISOR, ROUND_DOWN);
         return new Transfer(payment.getCustomerAccount(), payment.getPayeeAccount(), amount, payment.getDescription());
+    }
+
+    /**
+     * Function to simulate encoding of fraud data for high-performance messaging. In an actual system, a serialization technology such as Protobufs or SBE
+     * could be used.
+     *
+     * @param payment the payment data
+     * @return the encoded data
+     */
+    private byte[] encodeFraudData(Payment payment) {
+        return payment.getCustomerAccount().getBytes();
     }
 
 }

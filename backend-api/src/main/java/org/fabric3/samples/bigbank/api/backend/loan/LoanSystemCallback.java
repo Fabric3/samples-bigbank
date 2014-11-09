@@ -7,6 +7,11 @@ import org.oasisopen.sca.annotation.OneWay;
  */
 public interface LoanSystemCallback {
 
+    /**
+     * Sends the response asynchronously (one-way messaging).
+     *
+     * @param response the loan request response
+     */
     @OneWay
     void reply(LoanResponse response);
 }

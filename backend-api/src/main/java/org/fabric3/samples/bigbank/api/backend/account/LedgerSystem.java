@@ -1,7 +1,7 @@
 package org.fabric3.samples.bigbank.api.backend.account;
 
 /**
- * Interface to the backend ledger legacy system.
+ * Interface to the backend legacy ledger system.
  */
 public interface LedgerSystem {
 

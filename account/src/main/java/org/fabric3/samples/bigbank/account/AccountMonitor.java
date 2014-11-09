@@ -3,7 +3,7 @@ package org.fabric3.samples.bigbank.account;
 import org.fabric3.api.annotation.monitor.Info;
 
 /**
- *
+ * Monitoring/Logging interface for the account controller.
  */
 public interface AccountMonitor {
 

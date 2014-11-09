@@ -19,8 +19,8 @@ import org.oasisopen.sca.annotation.Service;
 /**
  * Controller for financing resources.
  *
- * This controller is wired to a legacy system that listens on JMS Queues via {@code Reference} annotations. Since this component is transaction, message
- * delivery is guaranteed. It demonstrates how to perform transactional, asynchronous message delivery and receive callbacks with Fabric3.
+ * This controller is wired to a legacy system that listens on JMS Queues via {@code Reference} annotations. It demonstrates how to perform transactional,
+ * asynchronous message delivery and receive callbacks with Fabric3. Since this component is transactional, message delivery is guaranteed.
  *
  * A message is sent over JMS by invoking {@link GatewayImpl#loanSystem} over the <code>ApplicationQueue</code> and responses are received from the
  * <code>ApplicationCallbackQueue</code> by the {@link GatewayImpl#reply(LoanResponse)} method. Messages are enqueued and dequeued within an XA transaction.
@@ -34,15 +34,21 @@ public class GatewayImpl implements Gateway, LoanSystemCallback {
     protected LoanMonitor monitor;
 
     @Reference
-    @JMS(value = @JMSConfiguration(destination = "ApplicationQueue"), callback = @JMSConfiguration(destination = "ApplicationCallbackQueue"))
+    @JMS(value = @JMSConfiguration(destination = "ApplicationQueue", connectionFactory = "BackendFactory"),
+            callback = @JMSConfiguration(destination = "ApplicationCallbackQueue", connectionFactory = "BackendFactory"))
     protected LoanSystem loanSystem;
 
     @Path("apply")
     @PUT
     public void apply(LoanRequest request) {
-        loanSystem.apply(request);
+        loanSystem.apply(request);  // sends the message asynchronously
     }
 
+    /**
+     * Receives the response from the ApplicationCallbackQueue destination.
+     *
+     * @param response the loan request response
+     */
     public void reply(LoanResponse response) {
         monitor.notification(response.getCustomerId());
         // the customer can be notified via mobile push, email or another mechanism

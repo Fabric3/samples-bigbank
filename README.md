@@ -1,13 +1,22 @@
-Fabric3 Sample Applications
-============================
+Fabric3 BigBank Sample Application
+====================================
 
 Introduction
 ----------------
-The samples are intended to demonstrate capabilities of the Fabric3 runtime:
+ Ths sample provides an overview of how to build service-based systems with Fabric3. BigBank is a fictitious financial institution tasked with modernizing its
+ IT infrastructure to support its mobile banking and API initiatives. BigBank has elected to build an API platform that interfaces with its legacy systems
+ through a combination of JMS and Web Services (WS-*). Rather than simply wrapping these services and exposing them as RESTful resources, the API platform
+ provides additional capabilities and features such as fraud monitoring. The API platform uses event-driven design (pub/sub channels) and modern messaging
+ technologies such as ZeroMQ to achieve these goals.
 
-* Starter Applications - Applications that demonstrate how to develop basic distributed applications using Fabric3. It is recommended users begin here.
+Topics Demonstrated
+--------------------
+* Building a RESTful API using JAX-RS with Fabric3
+* Pub/Sub messaging and event-driven design using ZeroMQ with Fabric3
+* Asynchronous programming and callbacks with Fabric3
+* Legacy system integration using JAX-WS (WS-*) and JMS with Fabric3
+* Service modularity, packaging and deployment with Fabric3
 
-* Feature Applications - Applications that demonstrate using specific Fabric3 features.
 
 Prerequisites
 ----------------
@@ -15,6 +24,7 @@ Prerequisites
 * JDK 7.0 or later
 
 * Maven 3.1.1 or later to build the samples. Maven can be downloaded from http://maven.apache.org/download.html.
+
 
 Installation
 ----------------
@@ -24,10 +34,8 @@ Installation
 
 	mvn clean install
 
-  _Be sure to ensure port 8181 is available as the Fabric3 sever is configured to use that port._
+  _Be sure to ensure ports 8181, 61616, 8383 are available as they are required for remote transports enabled by the application._
 
-
-* The samples also contain an automated build for assembling a single-VM runtime.
 
 Documentation
 ----------------

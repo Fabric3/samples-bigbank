@@ -2,6 +2,7 @@ package f3;
 
 import javax.xml.namespace.QName;
 import java.util.Collections;
+import java.util.List;
 
 import org.fabric3.api.annotation.model.Provides;
 import org.fabric3.api.binding.zeromq.builder.ZeroMQBindingDefinitionBuilder;
@@ -20,7 +21,8 @@ public class CompositeProvider {
     @Provides
     public static Composite createComposite() {
         // Creates a channel bound to a ZeroMQ socket. Publishers and subscribers to the channel will communicate via a ZeroMQ PUB/SUB socket.
-        ZeroMQBindingDefinition binding = ZeroMQBindingDefinitionBuilder.newBuilder().address(Collections.singletonList("localhost:8383")).build();
+        List<String> addresses = Collections.singletonList("localhost:8383");
+        ZeroMQBindingDefinition binding = ZeroMQBindingDefinitionBuilder.newBuilder().address(addresses).build();
         ChannelDefinition channel = ChannelDefinitionBuilder.newBuilder("FraudChannel").binding(binding).build();
         return CompositeBuilder.newBuilder(COMPOSITE).channel(channel).deployable().build();
     }

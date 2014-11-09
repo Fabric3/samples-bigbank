@@ -30,15 +30,31 @@ public class Transfer {
         return customerAccount;
     }
 
+    public void setCustomerAccount(String customerAccount) {
+        this.customerAccount = customerAccount;
+    }
+
     public String getPayeeAccount() {
         return payeeAccount;
+    }
+
+    public void setPayeeAccount(String payeeAccount) {
+        this.payeeAccount = payeeAccount;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

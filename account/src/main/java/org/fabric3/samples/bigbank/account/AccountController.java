@@ -25,7 +25,8 @@ import org.oasisopen.sca.annotation.Reference;
 /**
  * Controller for account resources.
  *
- * This controller is wired to legacy systems that expose WS-* (Web Services) APIs via {@code Reference} annotations.
+ * This controller is wired to legacy systems that expose WS-* (Web Services) APIs via {@code Reference} annotations. It is responsible for aggregating account
+ * balance with ledger entries to provide additional information to end-users such as the "safe-to-spend" calculation.
  */
 @EndpointUri("accounts")
 @Path("/")

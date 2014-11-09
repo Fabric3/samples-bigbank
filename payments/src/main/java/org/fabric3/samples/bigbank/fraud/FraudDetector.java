@@ -1,7 +1,9 @@
 package org.fabric3.samples.bigbank.fraud;
 
+import org.fabric3.api.MonitorChannel;
 import org.fabric3.api.annotation.Consumer;
 import org.fabric3.api.annotation.model.Component;
+import org.fabric3.api.annotation.monitor.Monitor;
 import org.fabric3.api.annotation.scope.Composite;
 
 /**
@@ -12,7 +14,11 @@ import org.fabric3.api.annotation.scope.Composite;
 @Component
 public class FraudDetector {
 
+    @Monitor
+    protected MonitorChannel monitor;
+
     @Consumer(source = "FraudChannel")
-    public void onEvent(String payment) {
+    public void onEvent(byte[] data) {
+        monitor.info("Received fraud detection data: " + new String(data));
     }
 }
