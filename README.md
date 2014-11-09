@@ -3,7 +3,7 @@ Fabric3 BigBank Sample Application
 
 Introduction
 ----------------
- Ths sample provides an overview of how to build service-based systems with Fabric3. BigBank is a fictitious financial institution tasked with modernizing its
+ This sample provides an overview of how to build service-based systems with Fabric3. BigBank is a fictitious financial institution tasked with modernizing its
  IT infrastructure to support its mobile banking and API initiatives. BigBank has elected to build an API platform that interfaces with its legacy systems
  through a combination of JMS and Web Services (WS-*). Rather than simply wrapping these services and exposing them as RESTful resources, the API platform
  provides additional capabilities and features such as fraud monitoring. The API platform uses event-driven design (pub/sub channels) and modern messaging
