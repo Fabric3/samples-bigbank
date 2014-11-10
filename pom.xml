@@ -89,9 +89,9 @@
         </plugins>
     </build>
     <scm>
-        <connection>scm:git:git@github.com:Fabric3/samples-bigbnk.git</connection>
-        <developerConnection>scm:git:git@github.com:Fabric3/samples-bigbnk.git</developerConnection>
-        <url>http://github.com/Fabric3/samples-bigbnk</url>
+        <connection>scm:git:git@github.com:Fabric3/samples-bigbank.git</connection>
+        <developerConnection>scm:git:git@github.com:Fabric3/samples-bigbank.git</developerConnection>
+        <url>http://github.com/Fabric3/samples-bigbank</url>
         <tag>HEAD</tag>
     </scm>
 
